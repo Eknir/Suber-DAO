@@ -49,6 +49,12 @@ Reasons for my existance:
 ## My features (Continuation)
 - Rules are both in wet-code (plain language) and dry-code (source:<a href="http://unenumerated.blogspot.com/2006/11/wet-code-and-dry.html"> unenumerated</a>)
 - Wet-code is enforced by voting
-- 'Correct' voting is incentivized by game-theory (aka token-economics) 
-- Which allows changing all parameters (default budget / budget period) |
+- 'Correct' voting is incentivized by game-theory (aka token-economics)
+- Which allows changing all parameters (for example: default budget / budget period) |
 - Which makes the contract itself fully upgradable, both on-chain and across blockchains |
+
+## I am live!
+<see: :<a href="https://github.com/Eknir/Suber-DAO"> Github (Eknir/Suber-DAO)</a>)
+
+## Overview of contracts
+![Overview of contracts:](images/Contract_inheritance.jpg)
