@@ -38,9 +38,9 @@ Reasons for my existance:
 ---
 
 ## Example
-* Dry code:
+* Dry code: <br>
 *Setting a budget for maximum spending (of Ether), per period per address (who was given the authority to spend by voting)*
 ---
 ## Example
-* Wet code:
+* Wet code: <br>
 *When an authorized address spends from the balance of the DAO, the spender must publish details of every transaction, explaining the reason of the spending*
