@@ -31,9 +31,8 @@ A small personal message:
 
 ## Reason of my existence:
 
-# @size[small](I exist to find out how I can be best applied as a tool for humans to self-organise. Which I do by:
+I exist to find out how I can be best applied as a tool for humans to self-organise. Which I do by:
 * Facilitating practical research into the grounds of democracy, voting, societies and other subjects which relate to the reason of my existence
 * Facilitating implementation and experimentation of improvements both in plain language as in computer code
 * Assisting people in implementing children of me within their organisations
 * Educating people about me and the reasons of my existence
-)
