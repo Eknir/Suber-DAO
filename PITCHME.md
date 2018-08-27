@@ -54,8 +54,7 @@ Reasons for my existance:
 - Which makes the contract itself fully upgradable, both on-chain and across blockchains |
 ---
 ## I am live!
-<see: :<a href="https://github.com/Eknir/Suber-DAO"> Github (Eknir/Suber-DAO)</a>)
----
+See: github.com/Eknir/Suber-DAO
 
 ## Overview of contracts
 ![Overview of contracts:](images/Contract_inheritance.jpg)
