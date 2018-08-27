@@ -52,12 +52,13 @@ Reasons for my existance:
 - Which allows changing all parameters (for example: default budget / budget period) |
 - Which makes the contract itself fully upgradable, both on-chain and across blockchains |
 ---
-## I am live!
-See: github.com/Eknir/Suber-DAO
----
 
 ## Overview of contracts
 ![Overview of contracts:](images/Contract_inheritance.jpg)
+---
+
+## I am live!
+See: github.com/Eknir/Suber-DAO
 ---
 
 ## Call for help
@@ -67,6 +68,7 @@ I need:
 * Lawyers, or other people capable of creating my wet-code |
 * Experienced Solidity developers, to audit my dry-code |
 * Supporters! :) |
+* Please reach out to me on Github |
 ---
 
 ## Open discussion
