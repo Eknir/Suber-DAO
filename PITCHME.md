@@ -5,7 +5,6 @@
 ---
 
 ## About my creator
-
 - Rinke Hendriksen |
 - Blockchain developer and consultant |
 - MSc. Digital currencies (expected January 2018) |
@@ -14,7 +13,6 @@
 ---
 
 ## Why we are here today
-
 - First release of my code to the public |
 - Call for help |
 - Open discussion |
