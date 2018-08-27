@@ -1,0 +1,894 @@
+{
+  "contractName": "SponsorRegistry",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "whenClosed",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "isUpgraded",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "callee",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "sponsorShipReceived",
+      "type": "event"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "payTribute",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x608060405234801561001057600080fd5b5061017e806100206000396000f300608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632e1cfbed1461005c57806342c80fc914610087578063896b3555146100b6575b600080fd5b34801561006857600080fd5b506100716100c0565b6040518082815260200191505060405180910390f35b34801561009357600080fd5b5061009c6100c6565b604051808215151515815260200191505060405180910390f35b6100be6100d8565b005b60015481565b6000809054906101000a900460ff1681565b6000809054906101000a900460ff161515156100f357600080fd5b60003411151561010257600080fd5b3373ffffffffffffffffffffffffffffffffffffffff167fcdf6310f72131d7377a46454c5bc554e5f679007f5b7dbd8c1ab5b399e37d828346040518082815260200191505060405180910390a25600a165627a7a72305820b9a150e73fb150bb26d202630d94762224f90051c072a21828a2204095efb43d0029",
+  "deployedBytecode": "0x608060405260043610610057576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632e1cfbed1461005c57806342c80fc914610087578063896b3555146100b6575b600080fd5b34801561006857600080fd5b506100716100c0565b6040518082815260200191505060405180910390f35b34801561009357600080fd5b5061009c6100c6565b604051808215151515815260200191505060405180910390f35b6100be6100d8565b005b60015481565b6000809054906101000a900460ff1681565b6000809054906101000a900460ff161515156100f357600080fd5b60003411151561010257600080fd5b3373ffffffffffffffffffffffffffffffffffffffff167fcdf6310f72131d7377a46454c5bc554e5f679007f5b7dbd8c1ab5b399e37d828346040518082815260200191505060405180910390a25600a165627a7a72305820b9a150e73fb150bb26d202630d94762224f90051c072a21828a2204095efb43d0029",
+  "sourceMap": "354:502:4:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;354:502:4;;;;;;;",
+  "deployedSourceMap": "354:502:4:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;302:25:7;;8:9:-1;5:2;;;30:1;27;20:12;5:2;302:25:7;;;;;;;;;;;;;;;;;;;;;;;274:22;;8:9:-1;5:2;;;30:1;27;20:12;5:2;274:22:7;;;;;;;;;;;;;;;;;;;;;;;;;;;705:149:4;;;;;;302:25:7;;;;:::o;274:22::-;;;;;;;;;;;;;:::o;705:149:4:-;441:10:7;;;;;;;;;;;440:11;432:20;;;;;;;;788:1:4;776:9;:13;768:22;;;;;;;;825:10;805:42;;;837:9;805:42;;;;;;;;;;;;;;;;;;705:149::o",
+  "source": "pragma solidity ^0.4.24;\n\nimport \"./Upgradable.sol\";\n\n/**\n * @title SponsorRegistry\n * @author Rinke Hendriksen (rinkehendriksen@gmail.com)\n * @dev interested people can commit funds to the DAO via the SponsorRegistry. Afterwards, they will be able to produce a signature from the sponsorAddress, to make public their support to the cause of the DAO\n */\ncontract SponsorRegistry is Upgradable {\n\n    event sponsorShipReceived(address indexed callee, uint256 amount);\n\n    /**\n     * @dev sponsors can use this function to grant funds to the DAO\n     * @notice this is not the only way how funds can be given to the DAO. We have the possibilities selfdescruct or mining to the contract address\n     */\n    function payTribute() public payable whenNotUpgraded {\n        require(msg.value > 0);\n        emit sponsorShipReceived(msg.sender, msg.value);\n    }\n}\n",
+  "sourcePath": "/home/rinke/DAPPS/SUBER/SuberDAO/contracts/SponsorRegistry.sol",
+  "ast": {
+    "absolutePath": "/home/rinke/DAPPS/SUBER/SuberDAO/contracts/SponsorRegistry.sol",
+    "exportedSymbols": {
+      "SponsorRegistry": [
+        1292
+      ]
+    },
+    "id": 1293,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1262,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:4"
+      },
+      {
+        "absolutePath": "/home/rinke/DAPPS/SUBER/SuberDAO/contracts/Upgradable.sol",
+        "file": "./Upgradable.sol",
+        "id": 1263,
+        "nodeType": "ImportDirective",
+        "scope": 1293,
+        "sourceUnit": 1555,
+        "src": "26:26:4",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 1264,
+              "name": "Upgradable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1554,
+              "src": "382:10:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Upgradable_$1554",
+                "typeString": "contract Upgradable"
+              }
+            },
+            "id": 1265,
+            "nodeType": "InheritanceSpecifier",
+            "src": "382:10:4"
+          }
+        ],
+        "contractDependencies": [
+          1554
+        ],
+        "contractKind": "contract",
+        "documentation": "@title SponsorRegistry\n@author Rinke Hendriksen (rinkehendriksen@gmail.com)\n@dev interested people can commit funds to the DAO via the SponsorRegistry. Afterwards, they will be able to produce a signature from the sponsorAddress, to make public their support to the cause of the DAO",
+        "fullyImplemented": true,
+        "id": 1292,
+        "linearizedBaseContracts": [
+          1292,
+          1554
+        ],
+        "name": "SponsorRegistry",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 1271,
+            "name": "sponsorShipReceived",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1270,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1267,
+                  "indexed": true,
+                  "name": "callee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1271,
+                  "src": "426:22:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1266,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "426:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1269,
+                  "indexed": false,
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1271,
+                  "src": "450:14:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1268,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "450:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "425:40:4"
+            },
+            "src": "400:66:4"
+          },
+          {
+            "body": {
+              "id": 1290,
+              "nodeType": "Block",
+              "src": "758:96:4",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 1280,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 1277,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2402,
+                            "src": "776:3:4",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 1278,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "value",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "776:9:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "hexValue": "30",
+                          "id": 1279,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "788:1:4",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "src": "776:13:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 1276,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        2405,
+                        2406
+                      ],
+                      "referencedDeclaration": 2405,
+                      "src": "768:7:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 1281,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "768:22:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1282,
+                  "nodeType": "ExpressionStatement",
+                  "src": "768:22:4"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 1284,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2402,
+                          "src": "825:3:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 1285,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "825:10:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 1286,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2402,
+                          "src": "837:3:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 1287,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "837:9:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 1283,
+                      "name": "sponsorShipReceived",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1271,
+                      "src": "805:19:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,uint256)"
+                      }
+                    },
+                    "id": 1288,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "805:42:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1289,
+                  "nodeType": "EmitStatement",
+                  "src": "800:47:4"
+                }
+              ]
+            },
+            "documentation": "@dev sponsors can use this function to grant funds to the DAO\n@notice this is not the only way how funds can be given to the DAO. We have the possibilities selfdescruct or mining to the contract address",
+            "id": 1291,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 1274,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 1273,
+                  "name": "whenNotUpgraded",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1539,
+                  "src": "742:15:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "742:15:4"
+              }
+            ],
+            "name": "payTribute",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1272,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "724:2:4"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 1275,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "758:0:4"
+            },
+            "scope": 1292,
+            "src": "705:149:4",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1293,
+        "src": "354:502:4"
+      }
+    ],
+    "src": "0:857:4"
+  },
+  "legacyAST": {
+    "absolutePath": "/home/rinke/DAPPS/SUBER/SuberDAO/contracts/SponsorRegistry.sol",
+    "exportedSymbols": {
+      "SponsorRegistry": [
+        1292
+      ]
+    },
+    "id": 1293,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1262,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:4"
+      },
+      {
+        "absolutePath": "/home/rinke/DAPPS/SUBER/SuberDAO/contracts/Upgradable.sol",
+        "file": "./Upgradable.sol",
+        "id": 1263,
+        "nodeType": "ImportDirective",
+        "scope": 1293,
+        "sourceUnit": 1555,
+        "src": "26:26:4",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 1264,
+              "name": "Upgradable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1554,
+              "src": "382:10:4",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Upgradable_$1554",
+                "typeString": "contract Upgradable"
+              }
+            },
+            "id": 1265,
+            "nodeType": "InheritanceSpecifier",
+            "src": "382:10:4"
+          }
+        ],
+        "contractDependencies": [
+          1554
+        ],
+        "contractKind": "contract",
+        "documentation": "@title SponsorRegistry\n@author Rinke Hendriksen (rinkehendriksen@gmail.com)\n@dev interested people can commit funds to the DAO via the SponsorRegistry. Afterwards, they will be able to produce a signature from the sponsorAddress, to make public their support to the cause of the DAO",
+        "fullyImplemented": true,
+        "id": 1292,
+        "linearizedBaseContracts": [
+          1292,
+          1554
+        ],
+        "name": "SponsorRegistry",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 1271,
+            "name": "sponsorShipReceived",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1270,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1267,
+                  "indexed": true,
+                  "name": "callee",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1271,
+                  "src": "426:22:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1266,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "426:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1269,
+                  "indexed": false,
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1271,
+                  "src": "450:14:4",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1268,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "450:7:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "425:40:4"
+            },
+            "src": "400:66:4"
+          },
+          {
+            "body": {
+              "id": 1290,
+              "nodeType": "Block",
+              "src": "758:96:4",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 1280,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 1277,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 2402,
+                            "src": "776:3:4",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 1278,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "value",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "776:9:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "hexValue": "30",
+                          "id": 1279,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "kind": "number",
+                          "lValueRequested": false,
+                          "nodeType": "Literal",
+                          "src": "788:1:4",
+                          "subdenomination": null,
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_rational_0_by_1",
+                            "typeString": "int_const 0"
+                          },
+                          "value": "0"
+                        },
+                        "src": "776:13:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      ],
+                      "id": 1276,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        2405,
+                        2406
+                      ],
+                      "referencedDeclaration": 2405,
+                      "src": "768:7:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
+                        "typeString": "function (bool) pure"
+                      }
+                    },
+                    "id": 1281,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "768:22:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1282,
+                  "nodeType": "ExpressionStatement",
+                  "src": "768:22:4"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 1284,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2402,
+                          "src": "825:3:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 1285,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "825:10:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 1286,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 2402,
+                          "src": "837:3:4",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 1287,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "value",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "837:9:4",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address",
+                          "typeString": "address"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      ],
+                      "id": 1283,
+                      "name": "sponsorShipReceived",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1271,
+                      "src": "805:19:4",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_uint256_$returns$__$",
+                        "typeString": "function (address,uint256)"
+                      }
+                    },
+                    "id": 1288,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "805:42:4",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1289,
+                  "nodeType": "EmitStatement",
+                  "src": "800:47:4"
+                }
+              ]
+            },
+            "documentation": "@dev sponsors can use this function to grant funds to the DAO\n@notice this is not the only way how funds can be given to the DAO. We have the possibilities selfdescruct or mining to the contract address",
+            "id": 1291,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 1274,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 1273,
+                  "name": "whenNotUpgraded",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1539,
+                  "src": "742:15:4",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "742:15:4"
+              }
+            ],
+            "name": "payTribute",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1272,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "724:2:4"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 1275,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "758:0:4"
+            },
+            "scope": 1292,
+            "src": "705:149:4",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 1293,
+        "src": "354:502:4"
+      }
+    ],
+    "src": "0:857:4"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "2.0.0",
+  "updatedAt": "2018-08-27T16:14:28.018Z"
+}
