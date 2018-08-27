@@ -55,6 +55,7 @@ Reasons for my existance:
 ---
 ## I am live!
 <see: :<a href="https://github.com/Eknir/Suber-DAO"> Github (Eknir/Suber-DAO)</a>)
+---
 
 ## Overview of contracts
 ![Overview of contracts:](images/Contract_inheritance.jpg)
