@@ -23,7 +23,9 @@
 ---
 
 ## But before we start...
-A personal message:
 ![A personal message:](images/Introduction.jpg)
 
+---
+## But before we start...
+![Reasons for my existance](images/Reasons_of_my_existance.jpg)
 ---
