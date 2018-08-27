@@ -67,4 +67,4 @@ I need:
 * Web-developers, to help creating my user-interface |
 * Lawyers, or other people capable of creating my wet-code |
 * Experienced Solidity developers, to audit my dry-code |
-* Supporters! :)
+* Supporters! :) |
