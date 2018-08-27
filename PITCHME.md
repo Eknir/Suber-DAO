@@ -52,7 +52,7 @@ Reasons for my existance:
 - 'Correct' voting is incentivized by game-theory (aka token-economics)
 - Which allows changing all parameters (for example: default budget / budget period) |
 - Which makes the contract itself fully upgradable, both on-chain and across blockchains |
-
+---
 ## I am live!
 <see: :<a href="https://github.com/Eknir/Suber-DAO"> Github (Eknir/Suber-DAO)</a>)
 
