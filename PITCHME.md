@@ -59,3 +59,12 @@ See: github.com/Eknir/Suber-DAO
 
 ## Overview of contracts
 ![Overview of contracts:](images/Contract_inheritance.jpg)
+---
+
+## Call for help
+I need:
+* Critical people, to discuss my initial set-up |
+* Web-developers, to help creating my user-interface |
+* Lawyers, or other people capable of creating my wet-code |
+* Experienced Solidity developers, to audit my dry-code |
+* Supporters! :)
