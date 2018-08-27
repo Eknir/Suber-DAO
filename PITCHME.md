@@ -24,6 +24,6 @@
 
 ## But before we start...
 A personal message:
-![Image](images/introduction.jpg)
+![A personal message:](images/Introduction.jpg)
 
 ---
