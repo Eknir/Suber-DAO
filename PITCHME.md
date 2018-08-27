@@ -17,8 +17,7 @@
 
 - First release of my code to the public |
 - Call for help |
-- Open discussion about my features |
-- Potential implementation of my first child at BlockDam |
+- Open discussion |
 
 ---
 
@@ -68,3 +67,6 @@ I need:
 * Lawyers, or other people capable of creating my wet-code |
 * Experienced Solidity developers, to audit my dry-code |
 * Supporters! :) |
+
+## Open discussion
+Ask me Anything!
