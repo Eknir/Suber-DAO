@@ -67,6 +67,7 @@ I need:
 * Lawyers, or other people capable of creating my wet-code |
 * Experienced Solidity developers, to audit my dry-code |
 * Supporters! :) |
+---
 
 ## Open discussion
 Ask me Anything!
