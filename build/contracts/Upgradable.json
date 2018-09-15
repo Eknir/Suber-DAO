@@ -30,24 +30,24 @@
       "type": "function"
     }
   ],
-  "bytecode": "0x608060405234801561001057600080fd5b5060e68061001f6000396000f3006080604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632e1cfbed14604e57806342c80fc9146076575b600080fd5b348015605957600080fd5b50606060a2565b6040518082815260200191505060405180910390f35b348015608157600080fd5b50608860a8565b604051808215151515815260200191505060405180910390f35b60015481565b6000809054906101000a900460ff16815600a165627a7a72305820c80ef8826de381b56d5d4a28a399c87f898a6762c04da30c5e50d78eee8e975f0029",
-  "deployedBytecode": "0x6080604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632e1cfbed14604e57806342c80fc9146076575b600080fd5b348015605957600080fd5b50606060a2565b6040518082815260200191505060405180910390f35b348015608157600080fd5b50608860a8565b604051808215151515815260200191505060405180910390f35b60015481565b6000809054906101000a900460ff16815600a165627a7a72305820c80ef8826de381b56d5d4a28a399c87f898a6762c04da30c5e50d78eee8e975f0029",
-  "sourceMap": "247:411:7:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;247:411:7;;;;;;;",
-  "deployedSourceMap": "247:411:7:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;302:25;;8:9:-1;5:2;;;30:1;27;20:12;5:2;302:25:7;;;;;;;;;;;;;;;;;;;;;;;274:22;;8:9:-1;5:2;;;30:1;27;20:12;5:2;274:22:7;;;;;;;;;;;;;;;;;;;;;;;;;;;302:25;;;;:::o;274:22::-;;;;;;;;;;;;;:::o",
+  "bytecode": "0x608060405234801561001057600080fd5b5060e68061001f6000396000f3006080604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632e1cfbed14604e57806342c80fc9146076575b600080fd5b348015605957600080fd5b50606060a2565b6040518082815260200191505060405180910390f35b348015608157600080fd5b50608860a8565b604051808215151515815260200191505060405180910390f35b60015481565b6000809054906101000a900460ff16815600a165627a7a723058200531ea5f256976bb1405abbfb72923ef97af8adafda4fb9c6185095c812b2e6a0029",
+  "deployedBytecode": "0x6080604052600436106049576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff1680632e1cfbed14604e57806342c80fc9146076575b600080fd5b348015605957600080fd5b50606060a2565b6040518082815260200191505060405180910390f35b348015608157600080fd5b50608860a8565b604051808215151515815260200191505060405180910390f35b60015481565b6000809054906101000a900460ff16815600a165627a7a723058200531ea5f256976bb1405abbfb72923ef97af8adafda4fb9c6185095c812b2e6a0029",
+  "sourceMap": "247:411:5:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;247:411:5;;;;;;;",
+  "deployedSourceMap": "247:411:5:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;302:25;;8:9:-1;5:2;;;30:1;27;20:12;5:2;302:25:5;;;;;;;;;;;;;;;;;;;;;;;274:22;;8:9:-1;5:2;;;30:1;27;20:12;5:2;274:22:5;;;;;;;;;;;;;;;;;;;;;;;;;;;302:25;;;;:::o;274:22::-;;;;;;;;;;;;;:::o",
   "source": "pragma solidity ^0.4.24;\n\n/**\n * @title Upgradable\n * @author Rinke Hendriksen (rinkehendriksen@gmail.com)\n * @dev keeps track of whether the contract is in a upgraded state and includes modifiers to adjust the behavior of the DAO accordingly\n */\ncontract Upgradable {\n\n    bool public isUpgraded;\n    uint256 public whenClosed;\n\n    /**\n     * @dev reverts when in the upgraded state\n     */\n    modifier whenNotUpgraded {\n        require(!isUpgraded);\n        _;\n    }\n\n    /**\n     * @dev reverts when in the upgraded state and empty\n     */\n    modifier whenNotUpgradedAndNotEmpty {\n        require(!(isUpgraded && whenClosed <= now));\n        _;\n    }\n}\n",
-  "sourcePath": "/home/rinke/DAPPS/SUBER/SuberDAO/contracts/Upgradable.sol",
+  "sourcePath": "/Users/rinke/Projects/Suber-DAO/contracts/Upgradable.sol",
   "ast": {
-    "absolutePath": "/home/rinke/DAPPS/SUBER/SuberDAO/contracts/Upgradable.sol",
+    "absolutePath": "/Users/rinke/Projects/Suber-DAO/contracts/Upgradable.sol",
     "exportedSymbols": {
       "Upgradable": [
-        1554
+        1303
       ]
     },
-    "id": 1555,
+    "id": 1304,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1526,
+        "id": 1275,
         "literals": [
           "solidity",
           "^",
@@ -55,7 +55,7 @@
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:7"
+        "src": "0:24:5"
       },
       {
         "baseContracts": [],
@@ -63,20 +63,20 @@
         "contractKind": "contract",
         "documentation": "@title Upgradable\n@author Rinke Hendriksen (rinkehendriksen@gmail.com)\n@dev keeps track of whether the contract is in a upgraded state and includes modifiers to adjust the behavior of the DAO accordingly",
         "fullyImplemented": true,
-        "id": 1554,
+        "id": 1303,
         "linearizedBaseContracts": [
-          1554
+          1303
         ],
         "name": "Upgradable",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 1528,
+            "id": 1277,
             "name": "isUpgraded",
             "nodeType": "VariableDeclaration",
-            "scope": 1554,
-            "src": "274:22:7",
+            "scope": 1303,
+            "src": "274:22:5",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -84,10 +84,10 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 1527,
+              "id": 1276,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
-              "src": "274:4:7",
+              "src": "274:4:5",
               "typeDescriptions": {
                 "typeIdentifier": "t_bool",
                 "typeString": "bool"
@@ -98,11 +98,11 @@
           },
           {
             "constant": false,
-            "id": 1530,
+            "id": 1279,
             "name": "whenClosed",
             "nodeType": "VariableDeclaration",
-            "scope": 1554,
-            "src": "302:25:7",
+            "scope": 1303,
+            "src": "302:25:5",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -110,10 +110,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1529,
+              "id": 1278,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
-              "src": "302:7:7",
+              "src": "302:7:5",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -124,9 +124,9 @@
           },
           {
             "body": {
-              "id": 1538,
+              "id": 1287,
               "nodeType": "Block",
-              "src": "422:48:7",
+              "src": "422:48:5",
               "statements": [
                 {
                   "expression": {
@@ -134,7 +134,7 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1534,
+                        "id": 1283,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -142,15 +142,15 @@
                         "nodeType": "UnaryOperation",
                         "operator": "!",
                         "prefix": true,
-                        "src": "440:11:7",
+                        "src": "440:11:5",
                         "subExpression": {
                           "argumentTypes": null,
-                          "id": 1533,
+                          "id": 1282,
                           "name": "isUpgraded",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1528,
-                          "src": "441:10:7",
+                          "referencedDeclaration": 1277,
+                          "src": "441:10:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -169,21 +169,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 1532,
+                      "id": 1281,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2405,
-                        2406
+                        2734,
+                        2735
                       ],
-                      "referencedDeclaration": 2405,
-                      "src": "432:7:7",
+                      "referencedDeclaration": 2734,
+                      "src": "432:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 1535,
+                    "id": 1284,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -191,41 +191,41 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "432:20:7",
+                    "src": "432:20:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1536,
+                  "id": 1285,
                   "nodeType": "ExpressionStatement",
-                  "src": "432:20:7"
+                  "src": "432:20:5"
                 },
                 {
-                  "id": 1537,
+                  "id": 1286,
                   "nodeType": "PlaceholderStatement",
-                  "src": "462:1:7"
+                  "src": "462:1:5"
                 }
               ]
             },
             "documentation": "@dev reverts when in the upgraded state",
-            "id": 1539,
+            "id": 1288,
             "name": "whenNotUpgraded",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1531,
+              "id": 1280,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "422:0:7"
+              "src": "422:0:5"
             },
-            "src": "397:73:7",
+            "src": "397:73:5",
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 1552,
+              "id": 1301,
               "nodeType": "Block",
-              "src": "585:71:7",
+              "src": "585:71:5",
               "statements": [
                 {
                   "expression": {
@@ -233,7 +233,7 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1548,
+                        "id": 1297,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -241,7 +241,7 @@
                         "nodeType": "UnaryOperation",
                         "operator": "!",
                         "prefix": true,
-                        "src": "603:34:7",
+                        "src": "603:34:5",
                         "subExpression": {
                           "argumentTypes": null,
                           "components": [
@@ -251,19 +251,19 @@
                                 "typeIdentifier": "t_bool",
                                 "typeString": "bool"
                               },
-                              "id": 1546,
+                              "id": 1295,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
                               "lValueRequested": false,
                               "leftExpression": {
                                 "argumentTypes": null,
-                                "id": 1542,
+                                "id": 1291,
                                 "name": "isUpgraded",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1528,
-                                "src": "605:10:7",
+                                "referencedDeclaration": 1277,
+                                "src": "605:10:5",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_bool",
                                   "typeString": "bool"
@@ -277,19 +277,19 @@
                                   "typeIdentifier": "t_uint256",
                                   "typeString": "uint256"
                                 },
-                                "id": 1545,
+                                "id": 1294,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
                                 "lValueRequested": false,
                                 "leftExpression": {
                                   "argumentTypes": null,
-                                  "id": 1543,
+                                  "id": 1292,
                                   "name": "whenClosed",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 1530,
-                                  "src": "619:10:7",
+                                  "referencedDeclaration": 1279,
+                                  "src": "619:10:5",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_uint256",
                                     "typeString": "uint256"
@@ -299,38 +299,38 @@
                                 "operator": "<=",
                                 "rightExpression": {
                                   "argumentTypes": null,
-                                  "id": 1544,
+                                  "id": 1293,
                                   "name": "now",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 2404,
-                                  "src": "633:3:7",
+                                  "referencedDeclaration": 2733,
+                                  "src": "633:3:5",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_uint256",
                                     "typeString": "uint256"
                                   }
                                 },
-                                "src": "619:17:7",
+                                "src": "619:17:5",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_bool",
                                   "typeString": "bool"
                                 }
                               },
-                              "src": "605:31:7",
+                              "src": "605:31:5",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_bool",
                                 "typeString": "bool"
                               }
                             }
                           ],
-                          "id": 1547,
+                          "id": 1296,
                           "isConstant": false,
                           "isInlineArray": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "nodeType": "TupleExpression",
-                          "src": "604:33:7",
+                          "src": "604:33:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -349,21 +349,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 1541,
+                      "id": 1290,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2405,
-                        2406
+                        2734,
+                        2735
                       ],
-                      "referencedDeclaration": 2405,
-                      "src": "595:7:7",
+                      "referencedDeclaration": 2734,
+                      "src": "595:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 1549,
+                    "id": 1298,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -371,55 +371,55 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "595:43:7",
+                    "src": "595:43:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1550,
+                  "id": 1299,
                   "nodeType": "ExpressionStatement",
-                  "src": "595:43:7"
+                  "src": "595:43:5"
                 },
                 {
-                  "id": 1551,
+                  "id": 1300,
                   "nodeType": "PlaceholderStatement",
-                  "src": "648:1:7"
+                  "src": "648:1:5"
                 }
               ]
             },
             "documentation": "@dev reverts when in the upgraded state and empty",
-            "id": 1553,
+            "id": 1302,
             "name": "whenNotUpgradedAndNotEmpty",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1540,
+              "id": 1289,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "585:0:7"
+              "src": "585:0:5"
             },
-            "src": "549:107:7",
+            "src": "549:107:5",
             "visibility": "internal"
           }
         ],
-        "scope": 1555,
-        "src": "247:411:7"
+        "scope": 1304,
+        "src": "247:411:5"
       }
     ],
-    "src": "0:659:7"
+    "src": "0:659:5"
   },
   "legacyAST": {
-    "absolutePath": "/home/rinke/DAPPS/SUBER/SuberDAO/contracts/Upgradable.sol",
+    "absolutePath": "/Users/rinke/Projects/Suber-DAO/contracts/Upgradable.sol",
     "exportedSymbols": {
       "Upgradable": [
-        1554
+        1303
       ]
     },
-    "id": 1555,
+    "id": 1304,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1526,
+        "id": 1275,
         "literals": [
           "solidity",
           "^",
@@ -427,7 +427,7 @@
           ".24"
         ],
         "nodeType": "PragmaDirective",
-        "src": "0:24:7"
+        "src": "0:24:5"
       },
       {
         "baseContracts": [],
@@ -435,20 +435,20 @@
         "contractKind": "contract",
         "documentation": "@title Upgradable\n@author Rinke Hendriksen (rinkehendriksen@gmail.com)\n@dev keeps track of whether the contract is in a upgraded state and includes modifiers to adjust the behavior of the DAO accordingly",
         "fullyImplemented": true,
-        "id": 1554,
+        "id": 1303,
         "linearizedBaseContracts": [
-          1554
+          1303
         ],
         "name": "Upgradable",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
-            "id": 1528,
+            "id": 1277,
             "name": "isUpgraded",
             "nodeType": "VariableDeclaration",
-            "scope": 1554,
-            "src": "274:22:7",
+            "scope": 1303,
+            "src": "274:22:5",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -456,10 +456,10 @@
               "typeString": "bool"
             },
             "typeName": {
-              "id": 1527,
+              "id": 1276,
               "name": "bool",
               "nodeType": "ElementaryTypeName",
-              "src": "274:4:7",
+              "src": "274:4:5",
               "typeDescriptions": {
                 "typeIdentifier": "t_bool",
                 "typeString": "bool"
@@ -470,11 +470,11 @@
           },
           {
             "constant": false,
-            "id": 1530,
+            "id": 1279,
             "name": "whenClosed",
             "nodeType": "VariableDeclaration",
-            "scope": 1554,
-            "src": "302:25:7",
+            "scope": 1303,
+            "src": "302:25:5",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -482,10 +482,10 @@
               "typeString": "uint256"
             },
             "typeName": {
-              "id": 1529,
+              "id": 1278,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
-              "src": "302:7:7",
+              "src": "302:7:5",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -496,9 +496,9 @@
           },
           {
             "body": {
-              "id": 1538,
+              "id": 1287,
               "nodeType": "Block",
-              "src": "422:48:7",
+              "src": "422:48:5",
               "statements": [
                 {
                   "expression": {
@@ -506,7 +506,7 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1534,
+                        "id": 1283,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -514,15 +514,15 @@
                         "nodeType": "UnaryOperation",
                         "operator": "!",
                         "prefix": true,
-                        "src": "440:11:7",
+                        "src": "440:11:5",
                         "subExpression": {
                           "argumentTypes": null,
-                          "id": 1533,
+                          "id": 1282,
                           "name": "isUpgraded",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 1528,
-                          "src": "441:10:7",
+                          "referencedDeclaration": 1277,
+                          "src": "441:10:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -541,21 +541,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 1532,
+                      "id": 1281,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2405,
-                        2406
+                        2734,
+                        2735
                       ],
-                      "referencedDeclaration": 2405,
-                      "src": "432:7:7",
+                      "referencedDeclaration": 2734,
+                      "src": "432:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 1535,
+                    "id": 1284,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -563,41 +563,41 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "432:20:7",
+                    "src": "432:20:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1536,
+                  "id": 1285,
                   "nodeType": "ExpressionStatement",
-                  "src": "432:20:7"
+                  "src": "432:20:5"
                 },
                 {
-                  "id": 1537,
+                  "id": 1286,
                   "nodeType": "PlaceholderStatement",
-                  "src": "462:1:7"
+                  "src": "462:1:5"
                 }
               ]
             },
             "documentation": "@dev reverts when in the upgraded state",
-            "id": 1539,
+            "id": 1288,
             "name": "whenNotUpgraded",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1531,
+              "id": 1280,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "422:0:7"
+              "src": "422:0:5"
             },
-            "src": "397:73:7",
+            "src": "397:73:5",
             "visibility": "internal"
           },
           {
             "body": {
-              "id": 1552,
+              "id": 1301,
               "nodeType": "Block",
-              "src": "585:71:7",
+              "src": "585:71:5",
               "statements": [
                 {
                   "expression": {
@@ -605,7 +605,7 @@
                     "arguments": [
                       {
                         "argumentTypes": null,
-                        "id": 1548,
+                        "id": 1297,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -613,7 +613,7 @@
                         "nodeType": "UnaryOperation",
                         "operator": "!",
                         "prefix": true,
-                        "src": "603:34:7",
+                        "src": "603:34:5",
                         "subExpression": {
                           "argumentTypes": null,
                           "components": [
@@ -623,19 +623,19 @@
                                 "typeIdentifier": "t_bool",
                                 "typeString": "bool"
                               },
-                              "id": 1546,
+                              "id": 1295,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
                               "lValueRequested": false,
                               "leftExpression": {
                                 "argumentTypes": null,
-                                "id": 1542,
+                                "id": 1291,
                                 "name": "isUpgraded",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 1528,
-                                "src": "605:10:7",
+                                "referencedDeclaration": 1277,
+                                "src": "605:10:5",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_bool",
                                   "typeString": "bool"
@@ -649,19 +649,19 @@
                                   "typeIdentifier": "t_uint256",
                                   "typeString": "uint256"
                                 },
-                                "id": 1545,
+                                "id": 1294,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
                                 "lValueRequested": false,
                                 "leftExpression": {
                                   "argumentTypes": null,
-                                  "id": 1543,
+                                  "id": 1292,
                                   "name": "whenClosed",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 1530,
-                                  "src": "619:10:7",
+                                  "referencedDeclaration": 1279,
+                                  "src": "619:10:5",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_uint256",
                                     "typeString": "uint256"
@@ -671,38 +671,38 @@
                                 "operator": "<=",
                                 "rightExpression": {
                                   "argumentTypes": null,
-                                  "id": 1544,
+                                  "id": 1293,
                                   "name": "now",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 2404,
-                                  "src": "633:3:7",
+                                  "referencedDeclaration": 2733,
+                                  "src": "633:3:5",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_uint256",
                                     "typeString": "uint256"
                                   }
                                 },
-                                "src": "619:17:7",
+                                "src": "619:17:5",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_bool",
                                   "typeString": "bool"
                                 }
                               },
-                              "src": "605:31:7",
+                              "src": "605:31:5",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_bool",
                                 "typeString": "bool"
                               }
                             }
                           ],
-                          "id": 1547,
+                          "id": 1296,
                           "isConstant": false,
                           "isInlineArray": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "nodeType": "TupleExpression",
-                          "src": "604:33:7",
+                          "src": "604:33:5",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bool",
                             "typeString": "bool"
@@ -721,21 +721,21 @@
                           "typeString": "bool"
                         }
                       ],
-                      "id": 1541,
+                      "id": 1290,
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2405,
-                        2406
+                        2734,
+                        2735
                       ],
-                      "referencedDeclaration": 2405,
-                      "src": "595:7:7",
+                      "referencedDeclaration": 2734,
+                      "src": "595:7:5",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$returns$__$",
                         "typeString": "function (bool) pure"
                       }
                     },
-                    "id": 1549,
+                    "id": 1298,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -743,48 +743,48 @@
                     "lValueRequested": false,
                     "names": [],
                     "nodeType": "FunctionCall",
-                    "src": "595:43:7",
+                    "src": "595:43:5",
                     "typeDescriptions": {
                       "typeIdentifier": "t_tuple$__$",
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 1550,
+                  "id": 1299,
                   "nodeType": "ExpressionStatement",
-                  "src": "595:43:7"
+                  "src": "595:43:5"
                 },
                 {
-                  "id": 1551,
+                  "id": 1300,
                   "nodeType": "PlaceholderStatement",
-                  "src": "648:1:7"
+                  "src": "648:1:5"
                 }
               ]
             },
             "documentation": "@dev reverts when in the upgraded state and empty",
-            "id": 1553,
+            "id": 1302,
             "name": "whenNotUpgradedAndNotEmpty",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 1540,
+              "id": 1289,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "585:0:7"
+              "src": "585:0:5"
             },
-            "src": "549:107:7",
+            "src": "549:107:5",
             "visibility": "internal"
           }
         ],
-        "scope": 1555,
-        "src": "247:411:7"
+        "scope": 1304,
+        "src": "247:411:5"
       }
     ],
-    "src": "0:659:7"
+    "src": "0:659:5"
   },
   "compiler": {
     "name": "solc",
     "version": "0.4.24+commit.e67f0147.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "2.0.0",
-  "updatedAt": "2018-08-27T16:14:28.021Z"
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2018-09-15T12:18:58.959Z"
 }

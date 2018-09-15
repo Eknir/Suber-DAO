@@ -7,14 +7,14 @@ import "./../node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol";
  * @author Rinke Hendriksen (rinkehendriksen@gmail.com)
  * @dev keeps track of the amount of voting tokens belonging to addresses and allows to modify these amounts
  */
-contract TokenRegistry {
+contract VoucherRegistry {
 
     using SafeMath for uint256;
 
     uint256 internal totalSupply_;
     mapping(address => uint256) internal balances;
 
-    function balanceOf(address _owner) public view returns (uint256) {
+    function vouchersOf(address _owner) public view returns (uint256) {
         return balances[_owner];
     }
 

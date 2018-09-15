@@ -1,13 +1,13 @@
 pragma solidity ^0.4.24;
 
-import "./TokenRegistry.sol";
+import "./VoucherRegistry.sol";
 
 /**
  * @title TokenTreasury
  * @author Rinke Hendriksen (rinkehendriksen@gmail.com)
  * @dev The token treasury registers who can mind voting tokens and according to which parameters
  */
-contract TokenTreasury is TokenRegistry {
+contract VoucherTreasury is VoucherRegistry {
 
     mapping(address => tokenAllowance) public tokenAllowanceRegistry;
 
