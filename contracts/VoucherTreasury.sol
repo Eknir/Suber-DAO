@@ -1,3 +1,5 @@
+// TODO: make sure it is not possible to 'save' voucher allowance
+
 pragma solidity ^0.4.24;
 
 import "./VoucherRegistry.sol";
@@ -9,9 +11,9 @@ import "./VoucherRegistry.sol";
  */
 contract VoucherTreasury is VoucherRegistry {
 
-    mapping(address => tokenAllowance) public tokenAllowanceRegistry;
+    mapping(address => voucherAllowance) public voucherAllowanceRegistry;
 
-    struct tokenAllowance {
+    struct voucherAllowance {
         bool isAllowed;
         uint256 allowance;
         uint256 whenUpdated;
@@ -19,7 +21,7 @@ contract VoucherTreasury is VoucherRegistry {
         uint256 budget;
     }
 
-    event TokenAllowanceIncreased(
+    event voucherAllowanceIncreased(
         address indexed callee,
         uint256 newAllowance
     );
@@ -38,8 +40,8 @@ contract VoucherTreasury is VoucherRegistry {
     */
     function mint(address to, uint256 amount) public {
         require(to != address(0));
-        require(amount <= tokenAllowanceRegistry[msg.sender].allowance);
-        tokenAllowanceRegistry[msg.sender].allowance -= amount;
+        require(amount <= voucherAllowanceRegistry[msg.sender].allowance);
+        voucherAllowanceRegistry[msg.sender].allowance -= amount;
         mint_(to, amount);
         emit Minted(msg.sender, to, amount);
 
@@ -48,11 +50,18 @@ contract VoucherTreasury is VoucherRegistry {
     /**
     * @dev can be called by an address with permission to mint to top-up the periodic allowance
     */
-    function increaseTokenAllowance() {
-        require(tokenAllowanceRegistry[msg.sender].isAllowed);
-        require(tokenAllowanceRegistry[msg.sender].whenUpdated + tokenAllowanceRegistry[msg.sender].budgetPeriod <= now);
-        tokenAllowanceRegistry[msg.sender].whenUpdated = now;
-        tokenAllowanceRegistry[msg.sender].allowance = tokenAllowanceRegistry[msg.sender].allowance.add(tokenAllowanceRegistry[msg.sender].budget);
-        emit TokenAllowanceIncreased(msg.sender, tokenAllowanceRegistry[msg.sender].allowance);
+    function increaseVoucherAllowance() {
+        require(voucherAllowanceRegistry[msg.sender].isAllowed);
+        require(voucherAllowanceRegistry[msg.sender].whenUpdated + voucherAllowanceRegistry[msg.sender].budgetPeriod <= now);
+        voucherAllowanceRegistry[msg.sender].whenUpdated = now;
+        voucherAllowanceRegistry[msg.sender].allowance = voucherAllowanceRegistry[msg.sender].allowance.add(voucherAllowanceRegistry[msg.sender].budget);
+        emit TokenAllowanceIncreased(msg.sender, voucherAllowanceRegistry[msg.sender].allowance);
+    }
+
+    /**
+    * @dev returns the tokenAllowance for a given address
+    */
+    function returnsVoucherAllowance(address allowed) public returns(voucherAllowance) {
+        return voucherAllowanceRegistry[allowed];
     }
 }

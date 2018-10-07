@@ -1,5 +1,5 @@
 pragma solidity ^0.4.24;
-//TODO: events
+// TODO: make a function which returns the etherAllowance struct for an address
 
 import "./../node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol";
 
@@ -48,7 +48,7 @@ contract EtherTreasury {
     }
 
     /**
-     * @dev can be called by an address with permission to spend to top-up the periodic allowance
+     * @dev can be called by an address with permission to spend to top-up their periodic allowance
      */
     function increaseEtherAllowance() {
         require(etherAllowanceRegistry[msg.sender].isAllowed);

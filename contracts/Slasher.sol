@@ -1,6 +1,7 @@
 //TODO: Different kind of slashings for different kind of situations
 //TODO: we now slash all voters, but perhaps we can slash those who propose a non-accepted votes as well?
 //TODO: we need different degrees of slashing, since now we take away all voting rights in one slash => not good :(
+// TODO: Allow the different slashes to be changed via the master contract
 
 pragma solidity ^0.4.24;
 
@@ -15,35 +16,80 @@ import "./../node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol";
  */
 contract Slasher is VotingEngine {
 
+    uint256 proposerSlash = 20;
+    uint256 voterSlash = 2;
+    uint256 nonVoterSlash = 4;
+
+
     using SafeMath for uint256;
 
-    event Slashed(
+    event VoterSlashed(
         address indexed callee,
-        address indexed poorGuy,
-        uint256 amount
+        address indexed voter,
+        uint256 vouchersTaken
     );
 
+    event ProposerSlashed(
+        address indexed callee,
+        address indexed proposer,
+        uint256 vouchersTaken
+    );
+
+    event NonVoterSlashed(
+        address indexed callee,
+        address indexed nonVoter,
+        uint256 vouchersTaken
+    );
+    
     /**
-    * @dev can be called by anybody to slash a person if this person deserves slashing
-    * @param poorGuy The address which will be slashed
-    * @param proposalId the identifier of the vote to which the poorguy casted a 'wrong' vote
-    * @param poorGuyVote the non-blinded vote of the poorGuy
-    * @param poorGuyBlindedVote the blinded vote of the poorGuy
-    * @param poorGuySecret the secret which was used by the poorGuy to shield his blindedVote from the public
+    * @dev can be called by anybody to slash a proposer who proposed a vote which did not get accepted
     */
-    function slash(address poorGuy, bytes32 proposalId, bool poorGuyVote, bytes32 poorGuyBlindedVote, bytes32 poorGuySecret ) {
-        require(keccak256(abi.encodePacked(poorGuyVote, poorGuySecret)) == poorGuyBlindedVote);
-        if(poorGuyVote) {
-            require(proposalRegistry[proposalId].status == ProposalStatus.ProposalRejected);
-            decreaseBalance(poorGuy, vouchersOf(poorGuy));
-            emit Slashed(msg.sender, poorGuy, vouchersOf(poorGuy));
-        } else {
-            require(proposalRegistry[proposalId].status == ProposalStatus.Accepted);
-            decreaseBalance(poorGuy, vouchersOf(poorGuy));
-            emit Slashed(msg.sender, poorGuy, vouchersOf(poorGuy));
+    function slashProposer(bytes32 proposalId) {
+        require(
+            proposalRegistry[proposalId].status == ProposalStatus.ProposalRejected ||
+            proposalRegistry[proposalId].status == ProposalStatus.ReferendumRejected
+        );
+        address memory proposer = proposalRegistry[proposalId].proposer;
+        uint256 memory initialVouchers = vouchersOf(proposer);
+        uint256 memory toBeSlashed = (initialVouchers * proposerSlash) / 100;
+        assert((toBeSlashed * 100) / proposerSlash == initialVouchers);
+        decreaseBalance(proposer, toBeSlashed);
+    }
 
+    function slashVoter(
+        address voter,
+        bytes32 proposalId,
+        bool vote,
+        bytes32 blindedVote,
+        bytes32 secret
+    ) {
+      require(keccak256(abi.encodePacked(vote, secret)) == blindedVote);
+      if(vote) {
+          require(proposalRegistry[proposalId].status == ProposalStatus.ProposalRejected);
+          uint256 memory initialVouchers = vouchersOf(voter);
+          uint256 memory toBeSlashed = (initialVouchers * voterSlash) / 100;
+          assert((toBeSlashed * 100) / voterSlash == initialVouchers);
+          decreaseBalance(voter, toBeSlashed);
+          emit Slashed(msg.sender, poorGuy, vouchersOf(poorGuy));
+      } else {
+          require(proposalRegistry[proposalId].status == ProposalStatus.Accepted);
+          decreaseBalance(poorGuy, vouchersOf(poorGuy));
+          emit Slashed(msg.sender, poorGuy, vouchersOf(poorGuy));
+      }
+      */
+      require(
+          proposalRegistry[proposalId].status == ProposalStatus.ProposalRejected ||
+          proposalRegistry[proposalId].status == ProposalStatus.ReferendumRejected
+      );
+      address memory proposer = proposalRegistry[proposalId].proposer;
+      uint256 memory initialVouchers = vouchersOf(proposer);
+      uint256 memory toBeSlashed = (initialVouchers * proposerSlash) / 100;
+      assert(finalVouchers * 100) / proposerSlash == initialVouchers);
+      decreaseBalance(proposer, toBeSlashed);
+    }
 
-        }
+    function slashNotVoted() {
+
     }
 
 }

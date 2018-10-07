@@ -147,6 +147,7 @@ contract VotingEngine is VoucherRegistry {
 
     // used in the mapping proposalRegistry; Every proposalId maps to one proposal structy
     struct proposal {
+        address proposer
         mapping(address => ballot) ballotRegistry;
         uint256 tokensInFavor;
         uint256 tokensAgainst;
@@ -193,6 +194,7 @@ contract VotingEngine is VoucherRegistry {
     function makeFromDefaultToReferendum(bytes32 proposalId, bytes32 _subject, bytes32[1] _effect) {
         require(proposalRegistry[proposalId].status == ProposalStatus.Default);
         require(!assemblyActive);
+        proposalRegistry[proposalId].proposer = msg.sender;
         proposalRegistry[proposalId].status = ProposalStatus.Referendum;
         proposalRegistry[proposalId].closingTime = now.add(votingWindow);
         proposalRegistry[proposalId].subject == _subject;
@@ -224,6 +226,7 @@ contract VotingEngine is VoucherRegistry {
         require(vouchersOf(msg.sender) > minimumVouchersToPropose);
         require(lastProposed[msg.sender].add(votingWindow) <= now);
         lastProposed[msg.sender] = now;
+        proposalRegistry[proposalId].proposer = msg.sender;
         proposalRegistry[proposalId].status = ProposalStatus.Commit;
         proposalRegistry[proposalId].closingTime = now.add(votingWindow);
         proposalRegistry[proposalId].subject == _subject;

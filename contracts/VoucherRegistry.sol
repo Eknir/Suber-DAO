@@ -27,11 +27,12 @@ contract VoucherRegistry {
      */
     function decreaseBalance(address poorGuy, uint256 amount) internal returns (bool) {
         require(amount <= balances[poorGuy]);
-        balances[poorGuy] += balances[poorGuy].sub(amount);
+        balances[poorGuy] = balances[poorGuy].sub(amount);
+        totalSupply_ = totalSupply_.sub(amount);
     }
 
     /**
-     * @dev function can be called by the TokenTreasury contract and adds voting tokens to an address for a certain amount
+     * @dev function can be called by the VoucherTreasury contract and adds voting tokens to an address for a certain amount
      */
     function mint_(address to, uint256 amount) internal returns (bool) {
         balances[to].add(amount);
