@@ -1,4 +1,4 @@
-// TODO: make sure it is not possible to 'save' voucher allowance
+// TODO: allow for setting the saveMultiplier
 
 pragma solidity ^0.4.24;
 
@@ -11,13 +11,14 @@ import "./VoucherRegistry.sol";
  */
 contract VoucherTreasury is VoucherRegistry {
 
-    mapping(address => voucherAllowance) public voucherAllowanceRegistry;
+    mapping(address => VoucherAllowance) public voucherAllowanceRegistry;
 
-    struct voucherAllowance {
+    struct VoucherAllowance {
         bool isAllowed;
         uint256 allowance;
         uint256 whenUpdated;
         uint256 budgetPeriod;
+        uint256 saveMultiplier;
         uint256 budget;
     }
 
@@ -51,17 +52,17 @@ contract VoucherTreasury is VoucherRegistry {
     * @dev can be called by an address with permission to mint to top-up the periodic allowance
     */
     function increaseVoucherAllowance() {
+        uint256 memory budget = voucherAllowanceRegistry[msg.sender].budget;
+        uint256 memory saveMultiplier = voucherAllowanceRegistry[msg.sender].saveMultiplier;
+        uint256 memory allowance = voucherAllowanceRegistry[msg.sender].allowance;
         require(voucherAllowanceRegistry[msg.sender].isAllowed);
         require(voucherAllowanceRegistry[msg.sender].whenUpdated + voucherAllowanceRegistry[msg.sender].budgetPeriod <= now);
+        if(allowance + budget >= budget * saveMultiplier) {
+            voucherAllowanceRegistry[msg.sender].allowance = budget * saveMultiplier;
+        } else {
+            voucherAllowanceRegistry[msg.sender].allowance = allowance.add(budget);
+        }
         voucherAllowanceRegistry[msg.sender].whenUpdated = now;
-        voucherAllowanceRegistry[msg.sender].allowance = voucherAllowanceRegistry[msg.sender].allowance.add(voucherAllowanceRegistry[msg.sender].budget);
         emit TokenAllowanceIncreased(msg.sender, voucherAllowanceRegistry[msg.sender].allowance);
-    }
-
-    /**
-    * @dev returns the tokenAllowance for a given address
-    */
-    function returnsVoucherAllowance(address allowed) public returns(voucherAllowance) {
-        return voucherAllowanceRegistry[allowed];
     }
 }

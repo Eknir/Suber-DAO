@@ -36,8 +36,9 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
         bytes32 proposalId
     );
 
-    modifier mustBeAccepted(bytes32 proposalId) {
+    modifier mustBeAcceptedAndPassedSomeTime(bytes32 proposalId) {
         require(proposalRegistry[proposalId].status == ProposalStatus.Accepted);
+        require(now >= proposalRegistry[proposalId].closingTime + votingWindow);
         _;
     }
 
@@ -50,7 +51,7 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
     function setSuperUpgrade(bytes32 proposalId)
         public
         whenNotUpgraded
-        mustBeAccepted(proposalId)
+        mustBeAcceptedAndPassedSomeTime(proposalId)
         afterApplicableVote(proposalId)
     {
         require(proposalRegistry[proposalId].subject == bytes32("SUPER_UPGRADE"));
@@ -63,7 +64,7 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
     function setReferendumQuotum(bytes32 proposalId)
         public
         whenNotUpgraded
-        mustBeAccepted(proposalId)
+        mustBeAcceptedAndPassedSomeTime(proposalId)
         afterApplicableVote(proposalId)
     {
         require(proposalRegistry[proposalId].subject == bytes32("REFERENDUM_QUOTUM"));
@@ -74,7 +75,7 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
     function setMajorityQuotum(bytes32 proposalId)
         public
         whenNotUpgraded
-        mustBeAccepted(proposalId)
+        mustBeAcceptedAndPassedSomeTime(proposalId)
         afterApplicableVote(proposalId)
     {
         require(proposalRegistry[proposalId].subject == bytes32("MAJORITY_QUOTUM"));
@@ -85,7 +86,7 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
     function setMinimumVouchersToPropose(bytes32 proposalId)
         public
         whenNotUpgraded
-        mustBeAccepted(proposalId)
+        mustBeAcceptedAndPassedSomeTime(proposalId)
         afterApplicableVote(proposalId)
     {
         require(proposalRegistry[proposalId].subject == bytes32("MINIMUM_VOUCHERS_TO_PROPOSE"));
@@ -95,7 +96,7 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
     function setAssemblyInterval(bytes32 proposalId)
         public
         whenNotUpgraded
-        mustBeAccepted(proposalId)
+        mustBeAcceptedAndPassedSomeTime(proposalId)
         afterApplicableVote(proposalId)
     {
         require(proposalRegistry[proposalId].subject == bytes32("ASSEMBLY_PERIOD"));
@@ -107,7 +108,7 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
     function setVotingWindow(bytes32 proposalId)
         public
         whenNotUpgraded
-        mustBeAccepted(proposalId)
+        mustBeAcceptedAndPassedSomeTime(proposalId)
         afterApplicableVote(proposalId)
     {
         require(proposalRegistry[proposalId].subject ==  bytes32("VOTING_WINDOW"));
@@ -120,7 +121,7 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
     function setBalances(bytes32 proposalId)
         public
         whenNotUpgraded
-        mustBeAccepted(proposalId)
+        mustBeAcceptedAndPassedSomeTime(proposalId)
         afterApplicableVote(proposalId)
     {
         require(proposalRegistry[proposalId].subject == bytes32("BALANCES"));
@@ -131,7 +132,7 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
     function setEtherPermission(bytes32 proposalId)
         public
         whenNotUpgraded
-        mustBeAccepted(proposalId)
+        mustBeAcceptedAndPassedSomeTime(proposalId)
         afterApplicableVote(proposalId)
     {
         require(proposalRegistry[proposalId].subject == bytes32("ETHER_PERMISSION"));
@@ -146,7 +147,7 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
     function setEtherBudget(bytes32 proposalId)
         public
         whenNotUpgraded
-        mustBeAccepted(proposalId)
+        mustBeAcceptedAndPassedSomeTime(proposalId)
         afterApplicableVote(proposalId)
     {
         require(proposalRegistry[proposalId].subject == bytes32("ETHER_BUDGET"));
@@ -156,7 +157,7 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
     function setEtherPeriod(bytes32 proposalId)
         public
         whenNotUpgraded
-        mustBeAccepted(proposalId)
+        mustBeAcceptedAndPassedSomeTime(proposalId)
         afterApplicableVote(proposalId)
     {
         require(proposalRegistry[proposalId].subject == bytes32("ETHER_PERIOD"));
@@ -166,7 +167,7 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
     function setTokenPermission(bytes32 proposalId)
         public
         whenNotUpgraded
-        mustBeAccepted(proposalId)
+        mustBeAcceptedAndPassedSomeTime(proposalId)
         afterApplicableVote(proposalId)
     {
         require(proposalRegistry[proposalId].subject == bytes32("TOKEN_PERMISSION"));
@@ -181,7 +182,7 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
     function setTokenBudget(bytes32 proposalId)
         public
         whenNotUpgraded
-        mustBeAccepted(proposalId)
+        mustBeAcceptedAndPassedSomeTime(proposalId)
         afterApplicableVote(proposalId)
     {
         require(proposalRegistry[proposalId].subject == bytes32("TOKEN_BUDGET"));
@@ -191,7 +192,7 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
     function setTokenPeriod(bytes32 proposalId)
         public
         whenNotUpgraded
-        mustBeAccepted(proposalId)
+        mustBeAcceptedAndPassedSomeTime(proposalId)
         afterApplicableVote(proposalId)
     {
         require(proposalRegistry[proposalId].subject == bytes32("TOKEN_PERIOD"));
@@ -201,7 +202,7 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
     function setGoals(bytes32 proposalId)
         public
         whenNotUpgraded
-        mustBeAccepted(proposalId)
+        mustBeAcceptedAndPassedSomeTime(proposalId)
         afterApplicableVote(proposalId)
     {
         require(proposalRegistry[proposalId].subject == bytes32("GOALS"));
@@ -211,7 +212,7 @@ contract Master is VoucherTreasury, Slasher, EtherTreasury, SponsorRegistry {
     function setRules(bytes32 proposalId)
         public
         whenNotUpgraded
-        mustBeAccepted(proposalId)
+        mustBeAcceptedAndPassedSomeTime(proposalId)
         afterApplicableVote(proposalId)
     {
         require(proposalRegistry[proposalId].subject == bytes32("RULES"));

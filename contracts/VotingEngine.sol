@@ -1,5 +1,6 @@
 //TODO: get rid of the multiplication with 100000 (10)
-// TODO: set tokensInFavor / tokensAgainst default to 1
+// TODO: set tokensInFavor / tokensAgainst default to 1 ++ tokensInFavor / tokensAgainst is not equal to 60% of total voted tokens.
+// TODO: Emit the closing time as well in the ProposalStatusChanged
 
 pragma solidity ^0.4.24;
 
@@ -344,6 +345,7 @@ contract VotingEngine is VoucherRegistry {
         require(proposalRegistry[proposalId].closingTime <= now);
         require(((proposalRegistry[proposalId].tokensInFavor / proposalRegistry[proposalId].tokensAgainst) * 1000000) >= majorityQuotum); // TODO: see 5,
         proposalRegistry[proposalId].status == ProposalStatus.Accepted;
+        proposalRegistry[proposalId].closingTime = now;
         emit ProposalStatusChanged(msg.sender, proposalId, ProposalStatus.Accepted);
     }
 
@@ -357,6 +359,7 @@ contract VotingEngine is VoucherRegistry {
         require(proposalRegistry[proposalId].closingTime <= now);
         require(((proposalRegistry[proposalId].tokensInFavor / proposalRegistry[proposalId].tokensAgainst) * 1000000) < majorityQuotum); // TODO: see 5,
         proposalRegistry[proposalId].status == ProposalStatus.ProposalRejected;
+        proposalRegistry[proposalId].closingTime = now;
         emit ProposalStatusChanged(msg.sender, proposalId, ProposalStatus.ProposalRejected);
     }
 

@@ -1,6 +1,3 @@
-//TODO: Different kind of slashings for different kind of situations
-//TODO: we now slash all voters, but perhaps we can slash those who propose a non-accepted votes as well?
-//TODO: we need different degrees of slashing, since now we take away all voting rights in one slash => not good :(
 // TODO: Allow the different slashes to be changed via the master contract
 
 pragma solidity ^0.4.24;
@@ -18,7 +15,7 @@ contract Slasher is VotingEngine {
 
     uint256 proposerSlash = 20;
     uint256 voterSlash = 2;
-    uint256 nonVoterSlash = 4;
+    uint256 nonVoterSlash = 5;
 
 
     using SafeMath for uint256;
@@ -63,33 +60,31 @@ contract Slasher is VotingEngine {
         bytes32 blindedVote,
         bytes32 secret
     ) {
-      require(keccak256(abi.encodePacked(vote, secret)) == blindedVote);
-      if(vote) {
-          require(proposalRegistry[proposalId].status == ProposalStatus.ProposalRejected);
-          uint256 memory initialVouchers = vouchersOf(voter);
-          uint256 memory toBeSlashed = (initialVouchers * voterSlash) / 100;
-          assert((toBeSlashed * 100) / voterSlash == initialVouchers);
-          decreaseBalance(voter, toBeSlashed);
-          emit Slashed(msg.sender, poorGuy, vouchersOf(poorGuy));
-      } else {
-          require(proposalRegistry[proposalId].status == ProposalStatus.Accepted);
-          decreaseBalance(poorGuy, vouchersOf(poorGuy));
-          emit Slashed(msg.sender, poorGuy, vouchersOf(poorGuy));
-      }
-      */
-      require(
-          proposalRegistry[proposalId].status == ProposalStatus.ProposalRejected ||
-          proposalRegistry[proposalId].status == ProposalStatus.ReferendumRejected
-      );
-      address memory proposer = proposalRegistry[proposalId].proposer;
-      uint256 memory initialVouchers = vouchersOf(proposer);
-      uint256 memory toBeSlashed = (initialVouchers * proposerSlash) / 100;
-      assert(finalVouchers * 100) / proposerSlash == initialVouchers);
-      decreaseBalance(proposer, toBeSlashed);
+        require(keccak256(abi.encodePacked(vote, secret)) == blindedVote);
+            if(vote) {
+                require(proposalRegistry[proposalId].status == ProposalStatus.ProposalRejected);
+            } else {
+                require(proposalRegistry[proposalId].status == ProposalStatus.Accepted);
+            }
+        uint256 memory initialVouchers = vouchersOf(voter);
+        uint256 memory toBeSlashed = (initialVouchers * voterSlash) / 100;
+        assert((toBeSlashed * 100) / voterSlash == initialVouchers);
+        decreaseBalance(voter, toBeSlashed);
+        emit VoterSlashed(msg.sender, voter, toBeSlashed);
+    }   
+  
+    function slashNotVoted(
+        address voter,
+        bytes32 proposalId
+    ) {
+        require(
+            proposalRegistry[proposalId].status == ProposalStatus.Accepted || 
+            proposalRegistry[proposalId].status == ProposalStatus.ProposalRejected
+        );
+        require(proposalRegistry[proposalId].ballotRegistry[voter].status != BallotStatus.BallotRevealed);
+        uint256 memory initialVouchers = vouchersOf(voter);
+        uint256 memory toBeSlashed = (initialVouchers * nonVoterSlash) / 100;
+        assert((toBeSlashed * 100) / nonVoterSlash == initialVouchers);
+        decreaseBalance(voter, toBeSlashed);
     }
-
-    function slashNotVoted() {
-
-    }
-
 }

@@ -1,5 +1,5 @@
+// TODO: allow for setting the saveMultiplier
 pragma solidity ^0.4.24;
-// TODO: make a function which returns the etherAllowance struct for an address
 
 import "./../node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol";
 
@@ -12,13 +12,14 @@ contract EtherTreasury {
 
     using SafeMath for uint256;
 
-    mapping(address => etherAllowance) etherAllowanceRegistry;
+    mapping(address => etherAllowance) public etherAllowanceRegistry;
 
-    struct etherAllowance {
+    struct EtherAllowance {
         bool isAllowed;
         uint256 allowance;
         uint256 whenUpdated;
         uint256 budget;
+        uint256 saveMultiplier;
         uint256 budgetPeriod;
     }
 
@@ -51,11 +52,18 @@ contract EtherTreasury {
      * @dev can be called by an address with permission to spend to top-up their periodic allowance
      */
     function increaseEtherAllowance() {
+        uint256 memory budget = etherAllowanceRegistry[msg.sender].budget;
+        uint256 memory saveMultiplier = etherAllowanceRegistry[msg.sender].saveMultiplier;
+        uint256 memory allowance = etherAllowanceRegistry[msg.sender].allowance;
+
         require(etherAllowanceRegistry[msg.sender].isAllowed);
-        require(etherAllowanceRegistry[msg.sender].whenUpdated.add(etherAllowanceRegistry[msg.sender].budgetPeriod) <= now);
-        require(etherAllowanceRegistry[msg.sender].allowance <= 4 * etherAllowanceRegistry[msg.sender].budget);
+        require(etherAllowanceRegistry[msg.sender].whenUpdated + etherAllowanceRegistry[msg.sender].budgetPeriod <= now);
+        if(allowance + budget >= budget.mul(saveMultiplier)) {
+            etherAllowanceRegistry[msg.sender].allowance = budget.mul(saveMultiplier); // maximum budget allowed
+        } else {
+            etherAllowanceRegistry[msg.sender].allowance = allowance.add(budget); 
+        }
         etherAllowanceRegistry[msg.sender].whenUpdated = now;
-        etherAllowanceRegistry[msg.sender].allowance += etherAllowanceRegistry[msg.sender].budget;
         emit EtherAllowanceIncreased(msg.sender, etherAllowanceRegistry[msg.sender].allowance);
     }
 }
