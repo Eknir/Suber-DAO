@@ -39,8 +39,7 @@ contract EtherTreasury {
      * @param to The address to which the Ether of the DAO will go.
      * @param amount The amount of Ethers which will be transferred.
      */
-    function spend(address to, uint256 amount) public {
-        require(amount <= address(this).balance);
+    function spendEther(address to, uint256 amount) public {
         require(to != address(0));
         require(amount <= etherAllowanceRegistry[msg.sender].allowance);
         etherAllowanceRegistry[msg.sender].allowance -= amount;
@@ -61,7 +60,7 @@ contract EtherTreasury {
         if(allowance + budget >= budget.mul(saveMultiplier)) {
             etherAllowanceRegistry[msg.sender].allowance = budget.mul(saveMultiplier); // maximum budget allowed
         } else {
-            etherAllowanceRegistry[msg.sender].allowance = allowance.add(budget); 
+            etherAllowanceRegistry[msg.sender].allowance = allowance.add(budget);
         }
         etherAllowanceRegistry[msg.sender].whenUpdated = now;
         emit EtherAllowanceIncreased(msg.sender, etherAllowanceRegistry[msg.sender].allowance);
