@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.4.24;
 
 /**
  * @title Ownable
@@ -76,24 +76,24 @@ contract Ownable {
 
 // @title SuberDAOVouchers
 // @author eknir
-// @dev the SuberDAOVouchers contract allows for pre-minting of voting vouchers, to be used in the Suber-Dao. The purpose is to ensure that 
+// @dev the SuberDAOVouchers contract allows for pre-minting of voting vouchers, to be used in the Suber-Dao. The purpose is to ensure that
 // the initial assignment of vouchers is widespread and among trusted people, while at the same time notifying about the Suber-Dao and incentivicing
 // them to tell others about it.
 contract SuberDAOVouchers is Ownable {
-    
+
     event LogMinted(bytes32 passwordHash);
     event LogRedeemed(bytes32 password, address voucherOwner);
     event LogMultiplied(address voucherOwner, address friend);
-    
+
     struct Voucher {
         bool minted;
         bool redeemed;
         bool multiplied;
     }
-    
+
     mapping(bytes32 => Voucher) public voucherRegistry;
     mapping(address => bytes32) public hasVoucher;
-    
+
     // @dev this function allows the owner of the contract to mint vouchers which are protected by a password
     // @notice reuse of passwords is not possible
     function mint(bytes32 passwordHash) public onlyOwner returns(bool success) {
@@ -102,12 +102,12 @@ contract SuberDAOVouchers is Ownable {
         emit LogMinted(passwordHash);
         return true;
     }
-    
+
     // @dev allows anybody who knows a password to redeem the vouchers protected by this password to his address
     // @notice hasVoucher is set to the hash of the password for the msg.sender, which identifies that this person has been given a voucher by the owner of this contract
     function redeem(bytes32 password) public returns(bool success) {
         require(
-            voucherRegistry[keccak256(abi.encodePacked(password))].minted && 
+            voucherRegistry[keccak256(abi.encodePacked(password))].minted &&
             !voucherRegistry[keccak256(abi.encodePacked(password))].redeemed &&
             hasVoucher[msg.sender] == bytes32(0)
         );
@@ -116,7 +116,7 @@ contract SuberDAOVouchers is Ownable {
         emit LogRedeemed(password, msg.sender);
         return true;
     }
-    
+
     // @dev anybody who was initially assigned a voucher can multiply his token by assigning a friend.
     // @notice hasVoucher is set to bytes32(1) for the friend, which identifies that the friend got his voucher not via the owner of this contract
     // @notice only those who got their vouchers via the owner of the contract can use this function
@@ -132,4 +132,3 @@ contract SuberDAOVouchers is Ownable {
         return true;
     }
 }
-
