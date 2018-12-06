@@ -67,7 +67,7 @@ contract EtherTreasury {
         require(amount <= etherAllowanceRegistry[msg.sender].allowance);
         etherAllowanceRegistry[msg.sender].allowance -= amount;
         emit EtherSpent(msg.sender, to, amount);
-        EtherFund(etherFund).withdraw(to, amount);
+        EtherFund(etherFund).transferEther(to, amount);
     }
 
     /**

@@ -15,9 +15,9 @@ contract Slasher {
 
     VoucherRegistry voucherRegistry;
     VotingEngine votingEngine;
-    uint256 proposerSlash;
-    uint256 voterSlash;
-    uint256 nonVoterSlash;
+    uint8 proposerSlash;
+    uint8 voterSlash;
+    uint8 nonVoterSlash;
     uint256 slasherWindow;
 
     struct Slashed {
@@ -46,9 +46,9 @@ contract Slasher {
     );
 
     constructor(
-        uint256 _proposerSlash,
-        uint256 _voterSlash,
-        uint256 _nonVoterSlash,
+        uint8 _proposerSlash,
+        uint8 _voterSlash,
+        uint8 _nonVoterSlash,
         uint256 _slasherWindow,
         address _voucherRegistry
     ) {
