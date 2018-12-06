@@ -15,7 +15,11 @@ contract ERC20FundChangable is ERC20Fund, VotingEngineHelpers {
         address votingEngine
     ) VotingEngineHelpers(
         votingEngine
+<<<<<<< HEAD
     ) ERC20Fund (
+=======
+    ) EtherFund(
+>>>>>>> 6507a8647bd08a1eb250f6b383f71319fe89dcba
       initialERC20Treasury
     ) {
         // empty constructor
