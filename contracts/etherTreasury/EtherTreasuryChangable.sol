@@ -18,22 +18,22 @@ contract EtherTreasuryChangable is EtherTreasury, VotingEngineHelpers {
     bytes32 constant public BYTES32_FALSE                         = bytes32("BYTES32_FALSE");
 
     constructor(
-      address[] initialSpenders,
-      uint256[] initialSpendBudgets,
-      uint256[] initialSpendBudgetPeriods,
-      uint256[] initialSpendMultipliers,
-      address initialEtherFund,
-      address votingEngine
-      ) VotingEngineHelpers(
-          votingEngine
-      ) EtherTreasury(
-          initialSpenders,
-          initialSpendBudgets,
-          initialSpendBudgetPeriods,
-          initialSpendMultipliers,
-          initialEtherFund
-      ) {
-        //Empty constructor
+        address[] initialSpenders,
+        uint256[] initialSpendBudgets,
+        uint256[] initialSpendBudgetPeriods,
+        uint256[] initialSpendMultipliers,
+        address initialEtherFund,
+        address votingEngine
+        ) VotingEngineHelpers(
+            votingEngine
+        ) EtherTreasury(
+            initialSpenders,
+            initialSpendBudgets,
+            initialSpendBudgetPeriods,
+            initialSpendMultipliers,
+            initialEtherFund
+        ) {
+          //empty constructor
       }
 
       function setEtherPermission(bytes32 proposalId)

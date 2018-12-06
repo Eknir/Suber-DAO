@@ -97,7 +97,7 @@ contract ERC20MintGuardian is VotingEngineHelpers {
         applicableVote(proposalId)
     {
         require(votingEngine.getProposalSubject(proposalId) == bytes32("AddERC20Minter"));
-        // MintableToken is potentially unsafe. We have to watch out for re-entrancy here, but since we already
+        // ERC20Mintable is potentially unsafe. We have to watch out for re-entrancy here, but since we already
         // set the status to InEffect in the constructor, there is no possibility for re-entering this contract.
         // furthermore, we assume that the community would only vote for AddMinter with an effectOne that would actually not cause re-entrancy
         ERC20Mintable(address(votingEngine.getProposalEffectOne(proposalId))).addMinter(
@@ -110,7 +110,7 @@ contract ERC20MintGuardian is VotingEngineHelpers {
         applicableVote(proposalId)
     {
         require(votingEngine.getProposalSubject(proposalId) == bytes32("RenounceERC20Minter"));
-        // MintableToken is potentially unsafe. We have to watch out for re-entrancy here, but since we already
+        // ERC20Mintable is potentially unsafe. We have to watch out for re-entrancy here, but since we already
         // set the status to InEffect in the constructor, there is no possibility for re-entering this contract.
         // furthermore, we assume that the community would only vote for AddMinter with an effectOne that would actually not cause re-entrancy
         ERC20Mintable(address(votingEngine.getProposalEffectOne(proposalId))).renounceMinter();
