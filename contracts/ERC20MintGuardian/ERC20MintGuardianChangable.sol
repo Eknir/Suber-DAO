@@ -2,7 +2,7 @@ import "./ERC20MintGuardian.sol";
 import "./../votingEngine/VotingEngineHelpers.sol";
 
 // TODO: naming convention of the subjects + make them a constant variable
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.7;
 
 contract ERC20MintGuardianChangable is ERC20MintGuardian {
 

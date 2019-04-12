@@ -1,11 +1,11 @@
 import "./../votingEngine/VotingEngineHelpers.sol";
 import "./../../node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol";
-import "./../../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
-
-//TODO: make a structure as the etherfund also for the ERC20Treasury 
+import "./../ERC20Fund/ERC20Fund.sol";
 pragma solidity ^0.4.24;
 
 contract ERC20Treasury is VotingEngineHelpers {
+
+    //TODO: make a construction to allow trustedERC20Fund (see EtherFund.sol)
     using SafeMath for uint256;
 
     mapping(address => mapping(address => ERC20SpendingAllowance)) public ERC20SpendingAllowanceRegistry;
@@ -48,16 +48,10 @@ contract ERC20Treasury is VotingEngineHelpers {
     /**
      * @dev TODO
      */
-    function spendERC20(address to, address _ERC20, uint256 amount) public returns(bool success) {
+    function spendERC20(address to, address _ERC20, address _ERC20Fund, uint256 amount) public returns(bool success) {
         require(amount <= ERC20SpendingAllowanceRegistry[msg.sender][_ERC20].allowance);
-        require(to != address(0));
-        ERC20 unsafeToken = ERC20(_ERC20);
         ERC20SpendingAllowanceRegistry[msg.sender][_ERC20].allowance -= amount;
-        // Handing over control to an external contract. Possibility for re-entrancy.
-        // No danger since:
-        // * Communicty has voted for the allowance of an unsafeERC20
-        // * If re-entrance: all what is achieved is depleting the allowance for the sender, without actually sending any ERC20.
-        unsafeToken.transfer(to, amount);
+        ERC20Fund(_ERC20Fund).transferERC20(_ERC20, to, amount);
         emit ERC20Spent(msg.sender, _ERC20, to, amount);
         return true;
     }

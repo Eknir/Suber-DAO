@@ -5,10 +5,9 @@ pragma solidity ^0.4.24;
 
 contract EtherFundChangable is EtherFund, VotingEngineHelpers {
 
-    bytes32 constant public ETHERFUND_ALLOWEDADDRESSES_01              = bytes32("ETHERFUND_ALLOWEDADDRESSES_01");
-
-    bytes32 constant public BYTES32_TRUE                             = bytes32("BYTES32_TRUE");
-    bytes32 constant public BYTES32_FALSE                            = bytes32("BYTES32_FALSE");
+    bytes32 constant public ETHERFUND_ALLOWEDADDRESSES_01               = bytes32("ETHERFUND_ALLOWEDADDRESSES_01");
+    bytes32 constant public BYTES32_TRUE                                = bytes32("BYTES32_TRUE");
+    bytes32 constant public BYTES32_FALSE                               = bytes32("BYTES32_FALSE");
     constructor(
         address initialEtherTreasury,
         address votingEngine

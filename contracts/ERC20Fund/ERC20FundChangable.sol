@@ -1,7 +1,7 @@
 import "./../votingEngine/VotingEngineHelpers.sol";
 import "./ERC20Fund.sol";
 
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.7;
 
 contract ERC20FundChangable is ERC20Fund, VotingEngineHelpers {
 

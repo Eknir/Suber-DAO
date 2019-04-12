@@ -4,7 +4,7 @@ import "./../../node_modules/openzeppelin-solidity/contracts/token/ERC20/ERC20Mi
 import "./../../node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol";
 
 
-pragma solidity ^0.4.24;
+pragma solidity ^0.5.7;
 
 contract ERC20MintGuardian is VotingEngineHelpers {
 

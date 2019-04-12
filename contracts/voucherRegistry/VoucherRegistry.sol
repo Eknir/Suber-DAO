@@ -1,6 +1,6 @@
 import "./../votingEngine/VotingEngineHelpers.sol";
 import "./../../node_modules/openzeppelin-solidity/contracts/math/SafeMath.sol";
-
+//TODO: split allowedAddresses into allowedToMint and allowedToBurn
 
 pragma solidity ^0.4.24;
 

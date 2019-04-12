@@ -111,7 +111,7 @@ contract Slasher {
         emit VoterSlashed(msg.sender, voter, toBeSlashed);
     }
 
-    function slashNotVoted(
+    function slashNonVoter(
         bytes32 proposalId,
         address voter
     ) {
